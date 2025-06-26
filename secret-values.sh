@@ -32,6 +32,6 @@ cp values.yaml secret_values.yaml
 # Update each secret key in secret_values.yaml
 for key in "${SECRET_KEYS[@]}"; do
   secret=$(generate_secret)
-  # Replace the value for the key (assumes YAML format: KEY: value)
-  sed -i "s/^\($key:\s*\).*/\1\"$secret\"/" secret_values.yaml
+  # Replace the value for the key (exactly one space after colon)
+  sed -i "s/^\($key:\)[[:space:]]*.*/\1 $secret/" secret_values.yaml
 done
