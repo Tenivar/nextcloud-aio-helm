@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextcloud-ingress
+  namespace: shanea-nextcloud
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+spec:
+  rules:
+    - host: {{ .Values.NC_DOMAIN }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextcloud-aio-apache
+                port:
+                  number: {{ .Values.APACHE_PORT }}
+  tls:
+    - hosts:
+        - {{ .Values.NC_DOMAIN }}
+      secretName: nextcloud-tls

@@ -9,8 +9,8 @@ metadata:
   namespace: "{{ .Values.NAMESPACE }}"
 spec:
   ipFamilyPolicy: PreferDualStack
-  type: LoadBalancer
-  externalTrafficPolicy: Local
+  type: ClusterIP
+  # externalTrafficPolicy: Local
   ports:
     - name: "{{ .Values.APACHE_PORT }}"
       port: {{ .Values.APACHE_PORT }}
