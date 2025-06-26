@@ -1,6 +1,9 @@
 # Nextcloud AIO Helm-chart
 
 > [!NOTE]
+> This repository is a fork of the official nextcloud-aio helm, with some tweaks to make ingress works. I have also added a secret values script to generate secrets for the helm chart, once the others values of the values.yaml have been completed.
+
+> [!NOTE]
 > For an enterprise-ready and scalable deployment method based on Helm Charts (also available for Podman), please [contact Nextcloud GmbH](https://nextcloud.com/enterprise/).
 
 > [!IMPORTANT]
